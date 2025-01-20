@@ -815,6 +815,18 @@ export const makeChatsSocket = (config: SocketConfig) => {
 			}
 		}, jid)
 	}
+    /**
+     * Removes Chats 
+     */
+     const clearMessage = (jid, key, timeStamp) => {
+         return chatModify({
+           delete: true,
+           lastMessages: [{
+                key: key,
+                messageTimestamp: timeStamp
+            }],
+        }, jid);
+     };
 
 	/**
 	 * queries need to be fired on connection open
